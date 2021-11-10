@@ -1,5 +1,7 @@
 package com.spring.pma.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,13 @@ public class ProjectController {
 	
 	@Autowired
 	iProjectRepository proRepo;
+	
+	@GetMapping
+	public String displayProjects(Model model) {
+		List<Project> projects = proRepo.findAll();
+		model.addAttribute("projectList", projects);
+		return "projects/list-projects";
+	}
 
 //	@RequestMapping("/new")
 	@GetMapping("/new")
@@ -29,6 +38,6 @@ public class ProjectController {
 	public String createProject(Project project, Model model) {
 		//this is where we save to database
 		proRepo.save(project);
-		return "redirect:/projects/new";
+		return "redirect:/projects";
 	}
 }
