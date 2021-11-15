@@ -7,11 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.pma.dao.iEmployeeRepository;
 import com.spring.pma.dao.iProjectRepository;
+import com.spring.pma.dto.ChartData;
 import com.spring.pma.dto.EmployeeProject;
-import com.spring.pma.entity.Employee;
-import com.spring.pma.entity.Project;
 
 @Controller
 public class HomeController {
@@ -23,9 +24,16 @@ public class HomeController {
 	iEmployeeRepository empRepo;
 	
 	@GetMapping("/")
-	public String displayHome(Model model) {
+	public String displayHome(Model model) throws JsonProcessingException {
 		List<EmployeeProject> employeeProjCount = empRepo.employeeProject();
 		model.addAttribute("employeeList", employeeProjCount);
+		
+		List<ChartData> projectData = proRepo.getProjectStatus();
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonString =  objectMapper.writeValueAsString(projectData);
+		// [["label":"NOTSTARTED", "value":1] , ["label":"INPROGRESS, "value":1], ["label":"COMPLETED", "value":1]]
+		
+		model.addAttribute("projectStatusCount", jsonString);
 		
 		return "main/home";
 	}
