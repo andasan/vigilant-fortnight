@@ -1,11 +1,9 @@
 -- INSERT EMPOLOYEES
- 
 INSERT INTO employee (employee_id, first_name, last_name, email) VALUES (1, 'Phil', 'Slater', 'phil@mail.com');
 INSERT INTO employee (employee_id, first_name, last_name, email) VALUES (2, 'David', 'Dunn', 'dave@mail.com');
 INSERT INTO employee (employee_id, first_name, last_name, email) VALUES (3, 'Steve', 'Tyler', 'steve@mail.com');
 INSERT INTO employee (employee_id, first_name, last_name, email) VALUES (4, 'Tasha', 'Connor', 'tasha@mail.com');
 INSERT INTO employee (employee_id, first_name, last_name, email) VALUES (5, 'Prunnela', 'Sherman', 'purne@mail.com');
- 
 
 -- INSERT PROJECTS
 
