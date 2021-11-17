@@ -27,10 +27,10 @@ public class EmployeeController {
 		return "employees/list-employees";
 	}
 
-	@GetMapping("/create")
+	@GetMapping("/new")
 	public String displayEmployeeForm(Model model) {
 		model.addAttribute("employee", new Employee());
-		return "/employees/new-employee";
+		return "employees/new-employee";
 	}
 	
 	@PostMapping("/save")
